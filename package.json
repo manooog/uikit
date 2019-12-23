@@ -1,0 +1,29 @@
+{
+  "name": "fcbox-uikit",
+  "version": "0.0.1",
+  "description": "自用组件库",
+  "main": "dist/index.umd.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --config ./build/webpack.dev.js"
+  },
+  "author": "ruanxihao@fcbox.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "babel-loader": "^8.0.6",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.149",
+    "dayjs": "^1.8.18",
+    "lodash": "^4.17.15"
+  }
+}

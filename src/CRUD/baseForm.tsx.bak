@@ -1,0 +1,42 @@
+import React from 'react'
+import { formProp } from 'crud'
+import { Form } from '@rxh/element-react'
+import { makeRenderItem } from './common/baseFunction'
+
+export const baseFormItemProp = (
+  type: 'input' | 'radio' | 'select',
+  prop: string
+) => (form: any, setForm: any, cur?: any) => {
+  let props: { [key: string]: any } = {
+    onChange: (e: any) => setForm({ ...form, [prop]: e }),
+    value: form[prop],
+  }
+  if (type === 'radio') {
+    props.checked = form[prop] === cur.value
+    props.value = cur.value
+  }
+  return props
+}
+
+export default function({
+  hook: {
+    form,
+    setForm,
+    liveColumn: { rules, editColumns },
+  },
+  formRef,
+}: formProp) {
+  return (
+    // 解决对象被改变的问题
+    <Form model={{ ...form }} ref={formRef} rules={rules} labelWidth={90}>
+      {editColumns.map(item => (
+        <Form.Item key={item.prop} label={item.label} prop={item.prop}>
+          {makeRenderItem(
+            { ...item.edit, options: item.options },
+            { form, setForm }
+          )}
+        </Form.Item>
+      ))}
+    </Form>
+  )
+}

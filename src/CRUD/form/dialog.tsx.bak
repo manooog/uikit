@@ -1,0 +1,61 @@
+import React, { useState, useEffect } from 'react'
+import { listHook } from 'crud'
+import { Dialog, Button } from '@rxh/element-react'
+
+interface Props {
+  hook: listHook
+  onClose: any
+  visible: [boolean, string]
+  children: any
+  form: any
+  title: string
+}
+
+export default ({
+  visible,
+  onClose,
+  hook,
+  children,
+  form: formRef,
+  title,
+}: Props) => {
+  let { form, onSave } = hook
+
+  let [saving, setSaving] = useState<boolean>(false)
+  const _onConfirm = function() {
+    setSaving(true)
+    formRef.validate((valid: boolean) => {
+      if (valid) {
+        onSave(form, visible[1]).then(res => {
+          setSaving(false)
+          if (res) {
+            onClose()
+          }
+        })
+      } else {
+        setSaving(false)
+      }
+    })
+  }
+  useEffect(() => {
+    if (visible[0] === false && formRef) {
+      formRef.resetFields()
+    }
+  }, [visible[0]])
+  return (
+    <Dialog
+      title={`${visible[1] === 'insert' ? '新增' : '编辑'}${title}`}
+      visible={visible[0]}
+      onCancel={onClose}
+      size="tiny"
+    >
+      <Dialog.Body>{children}</Dialog.Body>
+      <Dialog.Footer>
+        <Button onClick={onClose}>取 消</Button>
+        <Button loading={saving} type="primary" onClick={_onConfirm}>
+          确 定
+        </Button>
+      </Dialog.Footer>
+    </Dialog>
+  )
+}
