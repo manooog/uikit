@@ -2,17 +2,17 @@ import React from "react";
 
 import dayjs from "dayjs";
 import { find } from "lodash";
-import { Column, Dict, editOption, ColumnRender } from "fcbox-uikit";
+import { formOption, TypeColumnRender } from "fcbox-uikit";
 
-export const getRules = (items: editOption[]) => {
-  const container: { [key: string]: any } = {};
-  for (const item of items) {
-    if (item.prop && item.rule) {
-      container[item.prop] = item.rule;
-    }
-  }
-  return container;
-};
+// export const getRules = (items: formOption[]) => {
+//   const container: { [key: string]: any } = {};
+//   for (const item of items) {
+//     if (item.prop && item.rule) {
+//       container[item.prop] = item.rule;
+//     }
+//   }
+//   return container;
+// };
 
 /**
  * 递归移除对象的空字段
@@ -23,6 +23,10 @@ export const getRules = (items: editOption[]) => {
 export const removeEmpty = (source: { [key: string]: any }) => {
   for (const key in source) {
     let element = source[key];
+    if (element === null || element === undefined) {
+      delete source[key];
+      continue;
+    }
     if (element instanceof Date) {
       element = element.toISOString();
     }
@@ -54,7 +58,7 @@ export const makeTime = (val: any, needTime: boolean = true) => {
 };
 
 export const makeRenders = (): {
-  [key: string]: ColumnRender;
+  [key: string]: TypeColumnRender;
 } => {
   return {
     time: (rowColumn, item) => {

@@ -12,6 +12,8 @@ module.exports = {
     filename: "index.umd.js"
   },
 
+  devtool: "source-map",
+
   module: {
     rules: [
       {
@@ -31,5 +33,5 @@ module.exports = {
     extensions: [".ts", ".tsx", "js"]
   },
 
-  externals: [nodeExternals()]
+  externals: [nodeExternals({ modulesFromFile: true })]
 };

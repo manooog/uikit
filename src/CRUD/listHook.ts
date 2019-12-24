@@ -4,16 +4,20 @@ import {
   Column,
   liveColumn,
   queryParams,
-  listHook
+  listHook,
+  liveColumnItem,
+  TypeColumnRender,
+  formOption
 } from "fcbox-uikit";
 import { makeRenders, removeEmpty } from "./common/baseFunction";
 
 export default (options: ListOptions): listHook => {
+  const renders = makeRenders();
   let [listData, setListData] = useState<any>({ items: [], count: 0 });
   let [query, setQuery] = useState<queryParams>({
     pageNo: 1,
     pageSize: 10,
-    query: { request: {} }
+    request: {}
   });
 
   const _options = {
@@ -23,33 +27,40 @@ export default (options: ListOptions): listHook => {
     ...options
   };
 
-  const renders = makeRenders();
+  const _combineEditItem = (item: liveColumnItem) => {};
 
   const _makeColumns = (columns: Column[]): liveColumn => {
     let rules: { [key: string]: any[] } = {};
-    let items: Column[] = [];
-    let _columns: Column[] = [];
-    for (let c of columns) {
-      let render;
+    let _columns: Array<liveColumnItem> = [];
+    let queryItems: { [key: string]: any } = {};
 
-      if (c.type && renders[c.type]) {
-        if (c.type === "time") {
+    for (let c of columns) {
+      const _c: liveColumnItem = {
+        ...c,
+        render: (item: any, index?: any) => {}
+      };
+
+      let render: TypeColumnRender;
+
+      if (_c.type && renders[_c.type]) {
+        if (_c.type === "time") {
           //时间类型的列，固定宽度
-          c.width = 170;
+          _c.width = 170;
         }
-        render = renders[c.type].bind(null, c);
+        render = renders[_c.type].bind(null, _c);
       } else {
         // dict
-        if (c.options) {
-          render = renders["dict"].bind(null, c);
+        if (_c.options) {
+          render = renders["dict"].bind(null, _c);
         } else {
-          render = renders.default.bind(null, c);
+          // default
+          render = renders.default.bind(null, _c);
         }
       }
 
-      c.render = c.render ? c.render.bind(null, render, c) : render;
+      _c.render = c.render ? c.render.bind(null, render, _c) : render;
 
-      _columns.push(c);
+      _columns.push(_c);
     }
 
     return {
@@ -58,28 +69,20 @@ export default (options: ListOptions): listHook => {
     };
   };
 
-  /**
-   * 获取列表数据
-   *
-   * @param {Params} [params]
-   */
-  function _fetchData(params?: queryParams) {
+  function _fetchData() {
     let _params: queryParams = {
-      ...query,
-      ...params
+      ...query
     };
-    if (params) {
-      if (params.query) {
-        _params = { ..._params, ...params.query };
-      }
-    }
+
     removeEmpty(_params);
 
     _options.loadMethod(_params).then(res => {
-      setListData({
-        items: res.items,
-        count: res.count
-      });
+      if (res) {
+        setListData({
+          items: res.items,
+          count: res.count
+        });
+      }
     });
   }
 
@@ -95,8 +98,6 @@ export default (options: ListOptions): listHook => {
       ...params,
       pageNo
     });
-
-    _fetchData(params);
   };
 
   // TODO:
@@ -118,15 +119,15 @@ export default (options: ListOptions): listHook => {
   };
 
   const onDelete = async (item: any) => {
-    _options.beforeDelete().then(() => {
+    const resolve = async () => {
       // let res = await deleteById(item[_options.searchKey]);
       fetchData();
-    });
+    };
   };
 
   useEffect(() => {
     _fetchData();
-  }, []);
+  }, [query]);
 
   return {
     listData,

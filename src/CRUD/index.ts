@@ -3,4 +3,4 @@
 // export { baseQueryPropfn } from "./baseList";
 // export { default as DialogForm } from "./form/dialog";
 
-export { default as useList } from "./hook";
+export { default as useList } from "./listHook";
