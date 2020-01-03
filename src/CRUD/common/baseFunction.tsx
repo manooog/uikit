@@ -86,7 +86,11 @@ export const makeRenders = (): {
       return <div>{args.pop() + 1}</div>;
     },
     default: (rowColumn, item: any) => {
-      return <span>{item[rowColumn.prop] || "无"}</span>;
+      return (
+        <span style={{ whiteSpace: "normal" }}>
+          {item[rowColumn.prop] || "无"}
+        </span>
+      );
     }
   };
 };
