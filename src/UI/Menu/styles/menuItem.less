@@ -1,0 +1,75 @@
+@import "../../../var/style.less";
+@import "../../common/mixin.less";
+
+.@{uipre}menu_item {
+  height: 80px;
+  .flex(@main: "flex-start");
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 50px;
+  border-bottom: 1px solid #1b2434;
+  cursor: pointer;
+  &-label {
+    color: white;
+  }
+  &-icon {
+    @size: 24px;
+    height: @size;
+    width: @size;
+    background: no-repeat center;
+  }
+
+  &-angle {
+    .triange(@size:7px);
+    margin-left: 6px;
+
+    transition: all 0.3s 0s linear;
+  }
+
+  &-mark {
+    @size: 8px;
+    .triange(@size);
+    transform: translateY(-50%) rotate(270deg);
+    position: absolute;
+    right: -@size / 2;
+    top: 50%;
+    content: "";
+  }
+
+  &--not_level_one {
+    padding-left: 94px;
+    &::after {
+      display: none;
+    }
+
+    background-color: #00000020;
+  }
+
+  &--not_level_one &-label {
+    color: #808fab;
+  }
+
+  position: relative;
+  &--active {
+    background-color: #85cf26;
+    &::after {
+      height: 16px;
+      width: 3px;
+      content: "";
+      top: 50%;
+      left: 37px;
+      transform: translateY(-50%);
+      background-color: white;
+      border-radius: 2px;
+      position: absolute;
+    }
+  }
+
+  &--active &-label {
+    color: #ffffff;
+  }
+
+  &--expend &-angle {
+    transform: rotate(0deg);
+  }
+}

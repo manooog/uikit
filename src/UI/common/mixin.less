@@ -1,0 +1,23 @@
+.flex(@main:center, @cross:center, @dic: row) {
+  display: flex;
+  flex-direction: @dic;
+  justify-content: @main;
+  align-items: @cross;
+}
+
+.triange(@size: 23px,@init: 180deg) {
+  height: @size*2;
+  width: @size*2;
+  position: relative;
+  transform: rotate(@init);
+  &::after {
+    content: "";
+    position: absolute;
+    top: -@size / 2;
+    height: 0px;
+    width: 0px;
+    border: solid @size white;
+    border-color: transparent;
+    border-bottom-color: white;
+  }
+}
