@@ -1,0 +1,1 @@
+export const uipre = "fcbox";
