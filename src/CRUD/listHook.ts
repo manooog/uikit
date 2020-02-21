@@ -8,7 +8,7 @@ import {
   liveColumnItem,
   TypeColumnRender,
   formOption
-} from "fcbox-uikit";
+} from "./index.d";
 import { makeRenders, removeEmpty } from "./common/baseFunction";
 
 export default (options: ListOptions): listHook => {

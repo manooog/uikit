@@ -3,7 +3,7 @@
   "version": "0.0.5",
   "description": "自用组件库",
   "main": "dist/index.umd.js",
-  "types": "./types/index.d.ts",
+  "types": "./src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode production --config ./build/webpack.dev.js",

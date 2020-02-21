@@ -1,4 +1,4 @@
-import { UseFormHook, liveFormItem } from "fcbox-uikit";
+import { UseFormHook, liveFormItem } from "./index.d";
 import { useState } from "react";
 
 const formHook: UseFormHook = (options, getItemOption) => {
