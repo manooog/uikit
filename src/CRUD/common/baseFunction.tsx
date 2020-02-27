@@ -63,7 +63,7 @@ export const makeRenders = (): {
   return {
     time: (rowColumn, item) => {
       return (
-        <span style={{ width: "200px", display: "inline-block" }}>
+        <span style={{ width: "150px", display: "inline-block" }}>
           {makeTime(item[rowColumn.prop])}
         </span>
       );
