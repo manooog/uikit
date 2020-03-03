@@ -1,6 +1,6 @@
 {
   "name": "fcbox-uikit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "自用组件库",
   "main": "dist/index.umd.js",
   "types": "./src/index.d.ts",
