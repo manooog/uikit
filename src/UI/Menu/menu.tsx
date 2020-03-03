@@ -11,7 +11,8 @@ export const Ctx = createContext({ key: "" });
 const Menu: React.FunctionComponent<MenuProps> = ({
   data,
   routeKey,
-  onKeyChange
+  onKeyChange,
+  style
 }) => {
   const [menus, setMenus] = useState<Array<DynamicMenuProps>>(data);
   const [activeKey, setActiveKey] = useState<string>(routeKey);
@@ -52,7 +53,9 @@ const Menu: React.FunctionComponent<MenuProps> = ({
 
   return (
     <Ctx.Provider value={{ key: activeKey || routeKey || "" }}>
-      <div className={c().v}>{renderMenus}</div>
+      <div style={style} className={c().v}>
+        {renderMenus}
+      </div>
     </Ctx.Provider>
   );
 };

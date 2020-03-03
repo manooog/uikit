@@ -10,15 +10,18 @@ const canSeeMenu = (v: MenuSourceProps): boolean => {
   let flag = true;
   if (typeof v.visible === "function") {
     flag = v.visible();
+  } else if (v.visible === undefined) {
+    flag = true;
   } else {
     flag = !!v.visible;
   }
+
   return flag;
 };
 
 const MenuItem: React.FC<MenuItemProps> = props => {
   let { isSub, onClick, preKey } = props;
-  let { icon, name, expend, key } = props.source;
+  let { icon, name, expend, key, redirect } = props.source;
 
   const hasChildren =
     props.source?.subs?.length > 0 &&
@@ -28,7 +31,10 @@ const MenuItem: React.FC<MenuItemProps> = props => {
 
   let active = false;
 
-  const pos = ctx.key.indexOf(key);
+  const pos = ctx.key
+    .replace(/^\//, "")
+    .split("/")
+    .indexOf(key);
 
   switch (pos) {
     case 0:
@@ -47,7 +53,9 @@ const MenuItem: React.FC<MenuItemProps> = props => {
       break;
   }
 
-  props.source.combineKey = (preKey + "/" + key).replace(/^\//, "");
+  props.source.combineKey = redirect
+    ? redirect
+    : (preKey + "/" + key).replace(/^\//, "");
 
   return (
     <>
