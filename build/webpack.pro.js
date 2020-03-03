@@ -1,5 +1,6 @@
 const path = require("path");
 var nodeExternals = require("webpack-node-externals");
+const { modules } = require("./common");
 
 const path2src = p => path.resolve(__dirname, "../src/", p);
 
@@ -11,20 +12,7 @@ module.exports = {
     filename: "index.umd.js"
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: "ts-loader"
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: "babel-loader"
-      }
-    ]
-  },
+  module: modules,
 
   resolve: {
     extensions: [".ts", ".tsx", "js"]
