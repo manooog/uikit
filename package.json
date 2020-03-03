@@ -14,7 +14,8 @@
   "files": [
     "package.json",
     "types",
-    "dist"
+    "dist",
+    "src"
   ],
   "license": "ISC",
   "devDependencies": {
