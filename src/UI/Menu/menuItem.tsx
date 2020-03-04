@@ -1,4 +1,4 @@
-import { MenuItemProps, MenuSourceProps } from "./index.d";
+import { MenuItemProps, MenuSourceProps } from "../../../types/UI";
 import React, { useContext } from "react";
 import { cName } from "../../utils";
 import { Ctx } from "./menu";

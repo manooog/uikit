@@ -8,7 +8,7 @@ import {
   liveColumnItem,
   TypeColumnRender,
   formOption
-} from "./index.d";
+} from "../../types/index";
 import { makeRenders, removeEmpty } from "./common/baseFunction";
 
 export default (options: ListOptions): listHook => {

@@ -6,6 +6,6 @@
     "esModuleInterop": true,
     "sourceMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "types/UI/index.d.ts", "types/curd.d.ts"],
   "exclude": ["node_modules"]
 }

@@ -1,4 +1,4 @@
-import { MenuProps, DynamicMenuProps } from "./index.d";
+import { MenuProps, DynamicMenuProps } from "../../../types/UI";
 import React, { useState, createContext, useEffect } from "react";
 import { cName } from "../../utils";
 import MenuItem from "./menuItem";

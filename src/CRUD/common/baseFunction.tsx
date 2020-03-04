@@ -2,7 +2,7 @@ import React from "react";
 
 import dayjs from "dayjs";
 import { find } from "lodash";
-import { formOption, TypeColumnRender } from "../index.d";
+import { formOption, TypeColumnRender } from "../../../types/index";
 
 // export const getRules = (items: formOption[]) => {
 //   const container: { [key: string]: any } = {};

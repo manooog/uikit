@@ -1,4 +1,4 @@
-import { UseFormHook, liveFormItem } from "./index.d";
+import { UseFormHook, liveFormItem } from "../../types/index";
 import { useState } from "react";
 
 const formHook: UseFormHook = (options, getItemOption) => {
