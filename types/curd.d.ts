@@ -104,7 +104,7 @@ type modify = (
 
 interface Utils {
   makeTime: (val: any, needTime?: boolean) => string;
-  cName: (prefix: string) => (str: string) => { m: modify; v: string };
+  cName: (prefix: string) => (str?: string) => { m: modify; v: string };
 }
 export const utils: Utils;
 
