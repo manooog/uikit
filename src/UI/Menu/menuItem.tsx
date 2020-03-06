@@ -57,6 +57,11 @@ const MenuItem: React.FC<MenuItemProps> = props => {
     ? redirect
     : (preKey + "/" + key).replace(/^\//, "");
 
+  function renderName() {
+    const Name = name;
+    return typeof name === "string" ? name : <Name />;
+  }
+
   return (
     <>
       <div
@@ -74,7 +79,7 @@ const MenuItem: React.FC<MenuItemProps> = props => {
             style={{ backgroundImage: `url(${icon})` }}
           ></div>
         )}
-        <div className={c("label").v}>{name}</div>
+        <div className={c("label").v}>{renderName()}</div>
         {hasChildren && <div className={c("angle").v}></div>}
         {active && <div className={c("mark").v}></div>}
       </div>
