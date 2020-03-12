@@ -36,7 +36,7 @@ const formHook: UseFormHook = (options, getItemOption) => {
     }
   }
 
-  return [form, setForm, formItems];
+  return { form, setForm, formItems };
 };
 
 export default formHook;

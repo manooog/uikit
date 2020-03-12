@@ -9,10 +9,11 @@ import {
   TypeColumnRender,
   formOption
 } from "../../types/index";
-import { makeRenders, removeEmpty } from "./common/baseFunction";
+import { removeEmpty } from "./common/baseFunction";
+import { makeRenders } from "./common/tableColumnRender";
 
 export default (options: ListOptions): listHook => {
-  const renders = makeRenders();
+  const renders = makeRenders(options.opts || {});
   let [listData, setListData] = useState<any>({ items: [], count: 0 });
   let [query, setQuery] = useState<queryParams>({
     pageNo: 1,

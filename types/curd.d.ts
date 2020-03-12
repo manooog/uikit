@@ -72,10 +72,15 @@ interface queryParams {
   request?: Object;
 }
 
+interface ListConfig {
+  mutiLine?: boolean; // 是否在列表中展示多行
+}
+
 interface ListOptions {
   columns: Column[];
   pageSize?: number;
   loadMethod: (p: queryParams) => Promise<{ items: any[]; count: number }>;
+  opts?: ListConfig;
 }
 
 type liveColumnItem = Column & {
@@ -127,7 +132,11 @@ interface liveFormItem {
 type UseFormHook = (
   op: ListOptions,
   getItemOption: (col: Column) => undefined | formOption
-) => [any, React.Dispatch<any>, { [key: string]: liveFormItem }];
+) => {
+  form: any;
+  setForm: React.Dispatch<any>;
+  formItems: { [key: string]: liveFormItem };
+};
 
 // 值声明，只能用户值的使用
 export const useFormHook: UseFormHook;
