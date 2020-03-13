@@ -2,12 +2,12 @@
 @import "../../common/mixin.less";
 
 .@{uipre}menu_item {
-  height: 80px;
+  height: 70px;
   .flex(@main: "flex-start");
   font-size: 16px;
   font-weight: 500;
-  padding-left: 50px;
-  border-bottom: 1px solid #1b2434;
+  padding-left: 54px;
+  border-bottom: 1px solid #27334a;
   cursor: pointer;
   &-label {
     color: white;
@@ -18,7 +18,7 @@
     width: @size;
     background: no-repeat center;
     background-size: contain;
-    margin-right: 8px;
+    margin-right: 4px;
   }
 
   &-angle {
@@ -30,7 +30,7 @@
 
   &-mark {
     @size: 8px;
-    .triange(@size);
+    .triange(@size, @bg:#F0F3F5);
     transform: translateY(-50%) rotate(270deg);
     position: absolute;
     right: -@size / 2;
@@ -40,11 +40,15 @@
 
   &--not_level_one {
     padding-left: 94px;
+    color: #808fab;
+    &:not(:last-child) {
+      border-bottom: 1px solid #1b2434;
+    }
     &::after {
       display: none;
     }
 
-    background-color: #00000020;
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
   &--not_level_one &-label {
