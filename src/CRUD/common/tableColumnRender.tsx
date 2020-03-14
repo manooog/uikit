@@ -13,7 +13,8 @@ const spanStyleSingleLine: CSSProperties = {
 
 const spanStyleMutiLine: CSSProperties = {
   wordBreak: "break-all",
-  whiteSpace: "normal"
+  whiteSpace: "normal",
+  textAlign: "justify"
 };
 
 export const makeRenders = (
@@ -51,7 +52,7 @@ export const makeRenders = (
         <div
           style={{
             ...(config.mutiLine ? spanStyleMutiLine : spanStyleSingleLine),
-            width: rowColumn.width ? rowColumn.width + "px" : "auto"
+            width: "100%"
           }}
           title={item[rowColumn.prop]}
         >
