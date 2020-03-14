@@ -11,7 +11,7 @@ const formHook: UseFormHook = (options, getItemOption) => {
     if (_formOption) {
       // 存在对应的表单项
       const userProps = _formOption.props
-        ? _formOption.props(form, setForm)
+        ? _formOption.props(form, setForm, _formOption)
         : {};
       formItems[c.prop] = {
         label: _formOption.label || c.label,

@@ -20,6 +20,17 @@ type Column = {
   ) => any;
 };
 
+/**
+ * 表单项的属性生成器
+ * 会将同步表单数据的方法下放
+ *
+ */
+type makePropsMethod = (
+  form: any,
+  setForm: React.Dispatch<any>,
+  item: formOption
+) => { [key: string]: any } & { placeholder?: string };
+
 type formOption = {
   label?: string;
   /**
@@ -34,15 +45,8 @@ type formOption = {
    * @type {any[]}
    */
   rule?: any[];
-  /**
-   * 表单项的属性生成器
-   * 会将同步表单数据的方法下放
-   *
-   */
-  props?: (
-    form: any,
-    setForm: React.Dispatch<any>
-  ) => { [key: string]: any } & { placeholder?: string };
+
+  props?: makePropsMethod;
   /**
    * 表单项的中文标签
    *
