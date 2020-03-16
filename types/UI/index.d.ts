@@ -4,6 +4,7 @@ export type MenuProps = {
   data: Array<MenuSourceProps>;
   routeKey: string;
   onKeyChange?: (key: string) => void;
+  iconScale?: number;
 } & { style?: CSSProperties };
 
 declare const Menu: React.ComponentType<MenuProps>;

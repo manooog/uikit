@@ -72,7 +72,10 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
         {icon && (
           <div
             className={c("icon").v}
-            style={{ backgroundImage: `url(${icon})` }}
+            style={{
+              backgroundImage: `url(${icon})`,
+              transform: `scale(${ctx.iconScale})`
+            }}
           ></div>
         )}
         <div className={c("label").v}>{renderName()}</div>

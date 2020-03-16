@@ -6,14 +6,16 @@ import "./styles/menu.less";
 
 const c = cName("menu");
 
-export const Ctx = createContext({ key: "" });
+export const Ctx = createContext({ key: "", iconScale: 1 });
 
 const Menu: React.FunctionComponent<MenuProps> = ({
   data,
   routeKey,
   onKeyChange,
-  style
+  style,
+  iconScale
 }) => {
+  iconScale = iconScale || 1;
   const [menus, setMenus] = useState<Array<DynamicMenuProps>>(data);
   const [activeKey, setActiveKey] = useState<string>(routeKey);
 
@@ -52,7 +54,7 @@ const Menu: React.FunctionComponent<MenuProps> = ({
   }, [routeKey]);
 
   return (
-    <Ctx.Provider value={{ key: activeKey || routeKey || "" }}>
+    <Ctx.Provider value={{ key: activeKey || routeKey || "", iconScale }}>
       <div style={style} className={c().v}>
         {renderMenus}
       </div>
