@@ -74,7 +74,7 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
             className={c("icon").v}
             style={{
               backgroundImage: `url(${icon})`,
-              transform: `scale(${ctx.iconScale})`
+              transform: `scale(${ctx.iconScale})`,
             }}
           ></div>
         )}
@@ -84,7 +84,7 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
       </div>
       {hasChildren &&
         expend &&
-        props.source.subs.map((_val) => (
+        props.source.subs.filter(canSeeMenu).map((_val) => (
           <MenuItem
             preKey={preKey + "/" + key}
             onClick={() => {
