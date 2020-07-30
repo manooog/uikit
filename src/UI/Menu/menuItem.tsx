@@ -19,7 +19,7 @@ const canSeeMenu = (v: MenuSourceProps): boolean => {
   return flag;
 };
 
-const MenuItem: React.FC<MenuItemProps> = props => {
+const MenuItem: React.FC<MenuItemProps> = (props) => {
   let { isSub, onClick, preKey } = props;
   let { icon, name, expend, key, redirect } = props.source;
 
@@ -31,12 +31,10 @@ const MenuItem: React.FC<MenuItemProps> = props => {
 
   let active = false;
 
-  const pos = ctx.key
-    .replace(/^\//, "")
-    .split("/")
-    .indexOf(key);
+  const pos = ctx.key.replace(/^\//, "").split("/").indexOf(key);
 
   switch (pos) {
+    // 所以在多级结构中，不允许出现同样的key，否则会判断出错
     case 0:
       if (ctx.key.length > key.length) {
         active = hasChildren ? false : true;
@@ -66,10 +64,8 @@ const MenuItem: React.FC<MenuItemProps> = props => {
     <>
       <div
         className={
-          c()
-            .m("active", active)
-            .m("expend", expend)
-            .m("not_level_one", isSub).v
+          c().m("active", active).m("expend", expend).m("not_level_one", isSub)
+            .v
         }
         onClick={() => onClick(props.source)}
       >
@@ -85,7 +81,7 @@ const MenuItem: React.FC<MenuItemProps> = props => {
       </div>
       {hasChildren &&
         expend &&
-        props.source.subs.map(_val => (
+        props.source.subs.map((_val) => (
           <MenuItem
             preKey={preKey + "/" + key}
             onClick={() => {
