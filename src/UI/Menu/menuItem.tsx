@@ -29,7 +29,7 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
 
   const ctx = useContext(Ctx);
 
-  let active = new RegExp(`${key}$`).test(ctx.key);
+  let active = new RegExp(`/${key}$`).test(ctx.key);
 
   props.source.combineKey = redirect
     ? redirect
