@@ -29,27 +29,7 @@ const MenuItem: React.FC<MenuItemProps> = (props) => {
 
   const ctx = useContext(Ctx);
 
-  let active = false;
-
-  const pos = ctx.key.replace(/^\//, "").split("/").indexOf(key);
-
-  switch (pos) {
-    // 所以在多级结构中，不允许出现同样的key，否则会判断出错
-    case 0:
-      if (ctx.key.length > key.length) {
-        active = hasChildren ? false : true;
-      } else {
-        active = true;
-      }
-      break;
-
-    case -1:
-      break;
-
-    default:
-      active = true;
-      break;
-  }
+  let active = new RegExp(`${key}$`).test(ctx.key);
 
   props.source.combineKey = redirect
     ? redirect
