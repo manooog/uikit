@@ -10,6 +10,7 @@ type Column = {
   width?: string | number;
   type?: "time";
   options?: Array<dictItem>; // 如果是字典类型，则需要给出字典的选项
+  hide?: () => boolean;
   query?: formOption;
   edit?: formOption;
   render?: (

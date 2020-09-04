@@ -8,6 +8,7 @@ const formHook: UseFormHook = (options, getItemOption) => {
 
   for (const c of options.columns) {
     const _formOption = getItemOption(c);
+    if (c.hide && !c.hide()) continue;
     if (_formOption) {
       // 存在对应的表单项
       const userProps = _formOption.props
@@ -28,10 +29,10 @@ const formHook: UseFormHook = (options, getItemOption) => {
              * value以及onChange均可被覆盖
              */
 
-            ...userProps
+            ...userProps,
           };
         },
-        cloumn: c
+        cloumn: c,
       };
     }
   }
